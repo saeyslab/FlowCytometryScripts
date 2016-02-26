@@ -14,10 +14,6 @@ removeMargins <- function(flowFrame,dimensions){
         selection <- selection & 
             e[,d] > max(meta[d,"minRange"],min(e[,d])) &
             e[,d] < min(meta[d,"maxRange"],max(e[,d]))
-        
-        #message(paste0(colnames(flowFrame)[d],": ",sum(selection)))
-        #message(paste0("  Min:",meta[d,"minRange"],",",min(e[,d])," => ",sum( e[,d] > max(meta[d,"minRange"],min(e[,d])) )))
-        #message(paste0("  Max:",meta[d,"maxRange"],",",max(e[,d])," ",sum( e[,d] < min(meta[d,"maxRange"],max(e[,d])) )))
     }
     return(selection)
 }
@@ -142,12 +138,12 @@ selectGoodQuality <- function(dir,file,comp,toTransform,
     return(ff_new)
 }
 
-dir  <- "fcs"
+dir  <- "FR-FCM-ZZQY"
 files <- list.files(dir,pattern="Tube_[0-9]*.fcs$")
 dir.create(file.path(dir,"QC"))
     
 
-compensationFile = "fcs/CompensationFlowJo.csv"
+compensationFile = "FR-FCM-ZZQY/attachments/CompensationFlowJo.csv"
 comp <- read.csv(compensationFile,row.names=1,check.names = FALSE)
 colnames(comp) <- rownames(comp) <- gsub(" ::.*","",colnames(comp))
 

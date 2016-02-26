@@ -1,27 +1,31 @@
 library(flowCore)
 
+#####################
+# Download the data #
+#####################
+
+dataID <- "FR-FCM-ZZQY"
+
+library(FlowRepositoryR)
+setFlowRepositoryCredentials("flowRepositoryCredentials.txt") # To remove when experiment is public
+ds <- flowRep.get(dataID,use.credentials = T) # To update when experiment is public
+summary(ds)
+download(ds)
+
+
 ######################
 # Parameter settings #
 ######################
 
 # Files to use
-files = c("fcs/21-10-15_Tube_028.fcs","fcs/21-10-15_Tube_030.fcs",
-          "fcs/21-10-15_Tube_031.fcs","fcs/21-10-15_Tube_032.fcs",
-          "fcs/21-10-15_Tube_023.fcs","fcs/21-10-15_Tube_024.fcs",
-          "fcs/21-10-15_Tube_025.fcs","fcs/21-10-15_Tube_026.fcs",
-          "fcs/21-10-15_Tube_027.fcs")
-
-# Treatment of the mice
-label = c("WT","WT","WT","WT",
-          "aCD4","aCD4","aCD4","aCD4","aCD4")
-names(label) <- files
+files = list.files(dataID,pattern=".fcs",full.names = TRUE)
 
 # Compensation matrix
-compensationFile = "fcs/CompensationFlowJo.csv"
+compensationFile = file.path(dataID,"attachments/CompensationFlowJo.csv")
 colsToCompensate = c(8:9,11:19)
 
 # GatingML file
-gatingFile <- "fcs/151030_21-10-15_Tube_028.fcs_gates.xml"
+gatingFile <- file.path(dataID,"attachments/151030_21-10-15_Tube_028.fcs_gates.xml")
 # Indices of the gates of interest
 gate_ids <- c( "Live single cells" = 3,
                "Macrophages" = 4,

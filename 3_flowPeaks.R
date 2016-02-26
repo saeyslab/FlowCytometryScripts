@@ -8,7 +8,7 @@
 #                   each manual gate. Each column contains TRUE/FALSE values
 #                   indicating whether the cells fall in the specific gate
 #    colsToCluster: Columns to use for clustering
-load("fcs/21-10-15_Tube_028.Rdata")
+load("FR-FCM-ZZQY/21-10-15_Tube_028.Rdata")
 
 # Load the flowPeaks library
 library(flowPeaks)

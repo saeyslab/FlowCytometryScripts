@@ -1,3 +1,4 @@
+# Use same files as generated for FLOCK
 
 # Read results generated with python
 res_hdpgmm_10000 <- read.csv("hdpgmm/028_10k.csv",header = FALSE)

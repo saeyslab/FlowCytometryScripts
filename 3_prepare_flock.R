@@ -1,4 +1,4 @@
-load("fcs/21-10-15_Tube_028.Rdata")
+load("FR-FCM-ZZQY/21-10-15_Tube_028.Rdata")
 write.table(exprs(ff_t[selected,colsToCluster])*100,sep = "\t",
             file="flock/21-10-15_Tube_028.txt",
             row.names = FALSE, quote = FALSE)
